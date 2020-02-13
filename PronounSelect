@@ -1,0 +1,72 @@
+﻿# The script of the game goes in this file.
+
+# Declare characters used by this game. The color argument colorizes the
+# name of the character.
+
+define MC = Character("MainChara")
+define NPC = Character("Student")
+
+
+# The game starts here.
+
+label start:
+
+    # Show a background. This uses a placeholder by default, but you can
+    # add a file (named either "bg room.png" or "bg room.jpg") to the
+    # images directory to show it.
+
+    scene bg room
+
+    # This shows a character sprite. A placeholder is used, but you can
+    # replace it by adding a file named "eileen happy.png" to the images
+    # directory.
+
+    # These display lines of dialogue.
+
+    menu:
+        NPC "Oh! How would you like me to refer you?"
+
+        "My Lady":
+            jump choice_F
+
+        "My Lord":
+            jump choice_M
+
+        "Your Highness":
+            jump choice_NB
+
+label choice_F:
+    $ fPronouns = True
+
+    NPC "As you wish, My Lady! Welcome, let me lead you to your chambers"
+    jump Intro
+
+label choice_M:
+    $ mPronouns = True
+
+    NPC "As you wish, My Lord. Welcome, let me see you to your room."
+    jump Into
+
+label choice_nb:
+
+    $ nbPronouns = True
+
+    NPC " As you wish, Your Highness. Welcome, let me lead you to your room."
+    jump Intro
+
+label Intro:
+    "You follow the NPC around and see other students staring at you"
+
+    if fPronouns:
+        "Student 1" "Whoa, look at her! so pretty!"
+    else:
+            if mPronouns:
+                "Student 1" "Oh my, look at him! Is he new here?"
+
+            else:
+                "Student 1" "Whoa, it's a new student!"
+
+
+    # This ends the game.
+
+    return
