@@ -3,11 +3,11 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define MC = Character("MainChara")
+define MC = Character("[name]")
 define NPC = Character("Student")
 define fPronouns = 0
 define mPronouns = 0
-define nbPronouns = 0 
+define nbPronouns = 0
 
 
 # The game starts here.
@@ -25,9 +25,15 @@ label start:
     # directory.
 
     # These display lines of dialogue.
+    NPC "Pardon me, but what is your name?"
+    python:
+        name = renpy.input("What is your name?")
+        name = name.strip() or Alex
+
+    NPC "Oh? [name]? It is a pleasure to finally meet you."
 
     menu:
-        NPC "Oh! How would you like me to refer you?"
+        NPC "Pardon me for asking again, but how would you like me to refer to you?"
 
         "My Lady":
             jump choice_F
